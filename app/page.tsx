@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import Demo from '@/components/ui/demo'
+import Demo from '@/components/ui/Demo'
 
 const images = [
   '/images/placeholder2.png',
@@ -91,9 +91,11 @@ export default function LandingPage() {
         </div>
       </main>
 
+      <Demo />
+
       {/* Footer section for copyright */}
-      <footer className="bg-gray-800 text-white text-center py-4 shadow-md">
-        <p className="text-sm">© {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+      <footer className="bg-gray-800 text-black text-center py-4 shadow-md">
+        <p className="text-sm"><span>&copy;</span> {new Date().getFullYear()} GeoPT. All rights reserved.</p>
       </footer>
 
      
