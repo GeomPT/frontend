@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
-import { Menu, Play, User } from 'lucide-react';
+import Link from 'next/link' // Import Link
+import { Play } from 'lucide-react';
 
 const images = [
   '/images/placeholder2.png',
@@ -31,7 +31,7 @@ export default function LandingPage() {
           <Link href="/progress" passHref>
             <h1 className="bg-blue-600 text-white text-lg font-bold py-2 px-4 rounded-lg cursor-pointer hover:bg-blue-700 transition duration-300">progress</h1>
           </Link>
-          <Link href="/plan" passHref>
+          <Link href="/page2" passHref>
             <h1 className="bg-purple-600 text-white text-lg font-bold py-2 px-4 rounded-lg ml-4 cursor-pointer hover:bg-purple-700 transition duration-300">start session</h1>
           </Link>
           <Link href="/tutorial" passHref>
@@ -50,13 +50,24 @@ export default function LandingPage() {
           Experience the future of rehabilitation with our AI-powered physical therapy solutions.
           Personalized, precise, and always by your side.
         </p>
-        <Link href="/plan"> 
-          <button
-            className="bg-blue-600 text-white text-lg font-semibold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300"
-          >
-            Get Started
-          </button>
-        </Link>
+        {/* Centered button container */}
+        <div className="flex justify-center items-center space-x-4">
+          <Link href="/page2"> 
+            <button
+              className="bg-blue-600 text-white text-lg font-semibold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300"
+            >
+              Get Started
+            </button>
+          </Link>
+          <Link href="/demo"> 
+            <button
+              className="bg-teal-600 text-white text-lg font-semibold py-3 px-8 rounded-full hover:bg-teal-700 transition duration-300 flex items-center"
+            >
+              <Play className="mr-2" /> {/* Play icon */}
+              Try a Demo
+            </button>
+          </Link>
+        </div>
 
         {/* Display images below the button */}
         <div className="mt-8 flex justify-center">
@@ -85,30 +96,12 @@ export default function LandingPage() {
         </div>
       </main>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none"></div>
-      <section className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="md:flex">
-            <div className="md:w-1/2 p-8">
-              <h3 className="text-2xl font-bold text-blue-800 mb-4">Live Demo</h3>
-              <p className="text-gray-600 mb-4">See our AI-powered joint tracking in action. Start your camera to begin.</p>
-              <button className="flex items-center bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">
-                <Play size={20} className="mr-2" /> Start Demo
-              </button>
-            </div>
-            <div className="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
-              <div className="w-64 h-64 bg-gray-300 rounded-lg flex items-center justify-center">
-                <User size={64} className="text-gray-400" />
-              </div>
-            </div>
-          </div>
-        </section>
-      
-
-      <footer className="bg-blue-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 GeomPT. All rights reserved.</p>
-        </div>
+      {/* Footer section for copyright */}
+      <footer className="bg-gray-800 text-white text-center py-4 shadow-md">
+        <p className="text-sm">© {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
       </footer>
+
+     
       
     </div>
 
