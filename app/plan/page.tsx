@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 
-export default function Page2() {
+export default function Plan() {
   return (
     <div className="h-screen w-screen overflow-auto bg-gradient-to-br from-blue-100 to-purple-100 m-0 p-0">
       <div className="w-full h-full">

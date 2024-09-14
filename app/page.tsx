@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link' // Import Link
+import Link from 'next/link'
 import { Menu, Play, User } from 'lucide-react';
 
 const images = [
@@ -31,7 +31,7 @@ export default function LandingPage() {
           <Link href="/progress" passHref>
             <h1 className="bg-blue-600 text-white text-lg font-bold py-2 px-4 rounded-lg cursor-pointer hover:bg-blue-700 transition duration-300">progress</h1>
           </Link>
-          <Link href="/page2" passHref>
+          <Link href="/plan" passHref>
             <h1 className="bg-purple-600 text-white text-lg font-bold py-2 px-4 rounded-lg ml-4 cursor-pointer hover:bg-purple-700 transition duration-300">start session</h1>
           </Link>
           <Link href="/tutorial" passHref>
@@ -50,7 +50,7 @@ export default function LandingPage() {
           Experience the future of rehabilitation with our AI-powered physical therapy solutions.
           Personalized, precise, and always by your side.
         </p>
-        <Link href="/page2"> 
+        <Link href="/plan"> 
           <button
             className="bg-blue-600 text-white text-lg font-semibold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300"
           >
