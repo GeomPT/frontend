@@ -91,13 +91,13 @@ export default function LandingPage() {
         </div>
       </main>
 
-      <Demo></Demo>
-
-      <footer className="bg-blue-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 GeomPT. All rights reserved.</p>
-        </div>
+      {/* Footer section for copyright */}
+      <footer className="bg-gray-800 text-white text-center py-4 shadow-md">
+        <p className="text-sm">© {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
       </footer>
+
+     
+      
     </div>
   );
 }
