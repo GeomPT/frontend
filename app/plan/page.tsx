@@ -20,7 +20,7 @@ export default function Component() {
             <Link key={video.id} href={`/plan/${video.id}`}>
             <Card 
             key={video.id} 
-            className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105" 
+            className="bg-white shadow-lg hover:shadow-xl flex-shrink-0 relative duration-300 transform hover:scale-105" 
           >
               <CardHeader className="flex flex-col items-center text-center">
                 <h2 className="text-xl font-semibold mb-4">{video.title}</h2>
