@@ -39,7 +39,7 @@ const VideoPage = ({ params }: { params: { videoId: string } }) => {
         <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-center justify-center">
           
           {/* Video Card */}
-          <div className="bg-white p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 flex flex-col">
+          <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 flex flex-col">
             <div className="flex items-center justify-center mb-4 flex-grow">
               <video className="w-full h-30 rounded-md" controls>
                 <source className="rounded-md" src={video.videoLink} type="video/mp4" />
@@ -49,7 +49,7 @@ const VideoPage = ({ params }: { params: { videoId: string } }) => {
           </div>
 
           {/* Steps Card */}
-          <div className="bg-white p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 flex flex-col">
+          <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 flex flex-col">
             <h2 className="text-xl font-semibold mb-4 text-black text-center">Steps:</h2>
             <ol className="list-disc list-inside space-y-2 text-gray-700 flex-grow">
               {video.steps.map((step, index) => (
