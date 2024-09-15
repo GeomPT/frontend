@@ -18,12 +18,17 @@ export default function Component() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {videoData.map((video) => (
             <Card key={video.id} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader className="flex justify-center items-start"> {/* Centered the content */}
-                <div className="flex flex-col items-center"> {/* Added flex column to center the image */}
-                  <h2 className="text-xl font-semibold mb-20">{video.title}</h2>
-                  <div className="w-20 h-20 rounded-lg flex items-center justify-center"> {/* Increased width and height to w-20 and h-20 */}
-                    <Image src={`/images/v${video.id}.jpg`} alt={`Video ${video.id}`} width={80} height={80} className="rounded-lg mb-10" /> {/* Increased width and height to 80 */}
-                  </div>
+              <CardHeader className="flex flex-col items-center text-center">
+                <h2 className="text-xl font-semibold mb-4">{video.title}</h2>
+                <div className="h-[100px] w-full flex items-center justify-center mb-4">
+                  <Image 
+                    src={`/images/v${video.id}.jpg`} 
+                    alt={`Video ${video.id}`} 
+                    width={178} 
+                    height={100} 
+                    className="max-h-[100px] w-auto"
+                    style={{ objectFit: 'contain' }}
+                  />
                 </div>
               </CardHeader>
               <CardContent>
