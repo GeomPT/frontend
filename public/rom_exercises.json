@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "name": "shoulder1",
+        "name": "shoulder-elevation",
         "processingType": "shoulder",
         "title": "Shoulder Forward Elevation",
         "description": "Raising arm forward and upward.",
@@ -9,7 +9,7 @@
     },
     {
         "id": 2,
-        "name": "shoulder2",
+        "name": "shoulder-abduction",
         "processingType": "shoulder",
         "title": "Shoulder Abduction",
         "description": "Raising arm sideways and upward.",
@@ -17,7 +17,7 @@
     },
     {
         "id": 13,
-        "name": "leg",
+        "name": "leg-extension",
         "processingType": "knee",
         "title": "Straight Leg Extension",
         "description": "Starting with your feet on the floor, slowly extend your leg out.",
@@ -25,7 +25,7 @@
     },
     {
         "id": 12,
-        "name": "elbow1",
+        "name": "elbow-horizontal",
         "processingType": "elbow_horizontal",
         "title": "Rotator Cuff External Rotation",
         "description": "Bend your arm horizontally, then slowly rotate your arm up in an arch.",
@@ -33,7 +33,7 @@
     },
     {
       "id": 4,
-      "name": "elbow2",
+      "name": "elbow-extension",
       "processingType": "elbow",
       "title": "Elbow Extension",
       "description": "Lie down, bend your arm at a 90 degree angle, and rotate your arm in an arch.",

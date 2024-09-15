@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import io, { Socket } from "socket.io-client";
 
 interface LiveVideoFrameProps {
@@ -10,6 +10,7 @@ interface LiveVideoFrameProps {
   height: number;
   processingType: string;
   includeButton?: boolean;
+  workoutName?: string; // Add workoutName as an optional prop
 }
 
 export default function LiveVideoFrame({
@@ -18,6 +19,7 @@ export default function LiveVideoFrame({
   height,
   processingType,
   includeButton = false,
+  workoutName, // for sending data to DB & associating with workoutName
 }: LiveVideoFrameProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -34,7 +36,6 @@ export default function LiveVideoFrame({
   useEffect(() => {
     // Check for userId in localStorage
     const storedUserId = localStorage.getItem("userId");
-    console.log("storedUserId", storedUserId);
 
     if (!storedUserId) {
       // Redirect if userId is missing
@@ -88,10 +89,9 @@ export default function LiveVideoFrame({
       transports: ["websocket"],
       auth: {
         userId: storedUserId, // Send userId in auth
+        workoutName: workoutName || null, // Send workoutName if provided, otherwise null
       },
     });
-
-
 
     socketRef.current = newSocket;
 
@@ -116,6 +116,7 @@ export default function LiveVideoFrame({
     // Handle measurement events
     newSocket.on("measurement_complete", (data) => {
       setMeasurementState("complete");
+      console.log("measurement captured")
       setFlashAnimation(true);
       setTimeout(() => setFlashAnimation(false), 250);
       setTimeout(() => setMeasurementState("idle"), 250);
@@ -176,7 +177,7 @@ export default function LiveVideoFrame({
         clearInterval(frameTimer);
       }
     };
-  }, [streaming, processingType, width, height, router]);
+  }, [streaming, processingType, width, height, router, workoutName]);
 
   const handleBeginMeasurement = () => {
     if (
@@ -214,7 +215,9 @@ export default function LiveVideoFrame({
         </div>
         {!isConnected && (
           <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-            <h1 className="text-4xl text-black font-semibold">Connecting to camera...</h1>
+            <h1 className="text-4xl text-black font-semibold">
+              Connecting to camera...
+            </h1>
           </div>
         )}
       </div>

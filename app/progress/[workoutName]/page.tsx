@@ -45,22 +45,19 @@ const WorkoutProgressPage = ({
 
   // Fetch data from the API
   useEffect(() => {
-    if (!userId) return;
     const fetchData = async () => {
+      const storedUserId = localStorage.getItem("userId");
+      if (!storedUserId) return;
+      setUserId(storedUserId);
+
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/api/users/${userId}/${workoutName}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
+          `http://127.0.0.1:5000/api/users/${storedUserId}/${workoutName}`,
+          { headers: { "Content-Type": "application/json" } }
         );
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
+        if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+
         const data = await response.json();
-        // Sort data by timestamp ascending
         data.sort(
           (a, b) =>
             new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
@@ -71,7 +68,8 @@ const WorkoutProgressPage = ({
       }
     };
     fetchData();
-  }, [userId, workoutName]);
+  }, [workoutName]);
+
 
   // Assign fake dates based on today's date minus 14 days
   const assignFakeDates = (num) => {
@@ -92,7 +90,10 @@ const WorkoutProgressPage = ({
   const labels = assignFakeDates(
     dataPoints.length > 14 ? 14 : dataPoints.length
   );
-  const angles = dataPoints.slice(-14).map((dp) => dp.value); // Last 14 or fewer
+  const angles = dataPoints.length
+    ? dataPoints.slice(-14).map((dp) => dp.value)
+    : [];
+
 
   const chartData = {
     labels,
@@ -209,6 +210,7 @@ const WorkoutProgressPage = ({
             processingType={processingType}
             streaming={true}
             includeButton={true}
+            workoutName={workoutName}
           />
         </div>
       </div>
@@ -227,13 +229,17 @@ const WorkoutProgressPage = ({
         </h2>
         <div className="flex justify-center">
           <div className="w-3/4">
-            <Line data={chartData} options={chartOptions} />
+            {dataPoints.length > 0 ? (
+              <Line data={chartData} options={chartOptions} />
+            ) : (
+              <p>No data available for this workout.</p>
+            )}
           </div>
         </div>
 
-        {/* Recent Clips Section */}
+        {/* Recent Measurements Section */}
         <div className="mt-8">
-          <h3 className="text-2xl font-bold text-black mb-6">Recent Clips</h3>
+          <h3 className="text-2xl font-bold text-black mb-6">Recent Measurements</h3>
           <div className="flex items-center justify-center">
             <button
               onClick={handleScrollLeft}
@@ -263,13 +269,21 @@ const WorkoutProgressPage = ({
                         className="relative cursor-pointer"
                         onClick={() => setEnlargedMedia(clip)}
                       >
-                        <Image
-                          src={clip.imageUrl}
-                          alt={`Clip with angle ${clip.value}° on ${formattedDate}`}
-                          width={200}
-                          height={150}
-                          className="object-cover rounded-lg"
-                        />
+                        {clip.imageUrl ? (
+                          <Image
+                            src={clip.imageUrl}
+                            alt={`Clip with angle ${clip.value}° on ${formattedDate}`}
+                            width={200}
+                            height={150}
+                            className="object-cover rounded-lg"
+                          />
+                        ) : (
+                          <div
+                            style={{ width: "200px", height: "150px" }}
+                            className="bg-white rounded-lg"
+                          ></div>
+                        )}
+
                         {/* Play button overlay */}
                         <div className="absolute inset-0 flex items-center justify-center">
                           <svg
