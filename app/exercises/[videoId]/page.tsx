@@ -33,7 +33,6 @@ const VideoPage = ({ params }: { params: { videoId: string } }) => {
 
   return (
     <>
-      <NavBar />
       <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 py-10"> 
         {/* Page Title */}
         <h1 className="text-3xl font-bold text-black text-center mb-10">Details for {video.title}</h1>

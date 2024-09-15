@@ -192,8 +192,7 @@ const WorkoutProgressPage = ({
   }, [labels.length]);
 
   return (
-    <div className="bg-white min-h-screen">
-      <NavBar />
+    <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 to-purple-100 pb-8">
       {/* Workout Title */}
       <h1 className="text-4xl font-bold text-center mt-8 mb-4">
         {title || workoutName}

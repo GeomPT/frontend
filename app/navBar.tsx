@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -70,7 +72,7 @@ export default function NavBar() {
       </header>
 
       {/* Gradient div below navbar */}
-      <div className="h-0.5 bg-gradient-to-r from-blue-300 to-purple-300 mb-4" />
+      <div className="h-0.5 bg-gradient-to-r from-blue-300 to-purple-300 mb-8" />
     </>
   );
 }

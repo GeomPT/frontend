@@ -9,7 +9,6 @@ export default function LivePage() {
 
     return (
         <div className="p-4">
-            <NavBar />
             <h1 className="text-xl font-semibold mb-4">Video Stream:</h1>
             <LiveVideoFrame
                 streaming={true}

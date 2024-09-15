@@ -10,7 +10,6 @@ import videoData from "@/public/rom_exercises.json";
 export default function Component() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 to-purple-100 pb-8">
-      <NavBar />
       <div className="max-w-4xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {videoData.map((video) => (

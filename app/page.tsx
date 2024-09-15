@@ -26,7 +26,6 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-100 to-purple-100 relative overflow-hidden">
-      <NavBar/>
       <main className="container mx-auto px-4 py-16 text-center relative z-10 flex-grow mb-16">
         <h2 className="text-5xl md:text-5xl font-extrabold text-blue-900 mb-8 leading-tight">
           Enhancing Your Physical Therapy with AI

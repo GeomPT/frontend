@@ -39,7 +39,6 @@ const videoData = [
 export default function Component() {
     return (
         <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 to-purple-100 pb-8">
-            <NavBar />
             <div className="max-w-4xl mx-auto">
                 {/* <h1 className="text-3xl font-bold text-gray-800 mb-8">
                     GeomPT Progress
