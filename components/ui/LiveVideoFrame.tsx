@@ -176,7 +176,7 @@ export default function LiveVideoFrame({
   return (
     <>
       <div
-        className="relative rounded-lg p-1 bg-gradient-to-r from-blue-500 to-pink-500"
+        className="relative rounded-lg p-1 bg-gradient-to-r from-blue-500 to-pink-500 z-10"
         style={{
           width: "100%",
           maxWidth: `${width}px`,
@@ -184,15 +184,19 @@ export default function LiveVideoFrame({
           aspectRatio: `${width} / ${height}`,
         }}
       >
-        <div className="rounded-lg overflow-hidden">
+        <div className="relative rounded-lg overflow-hidden">
           {/* Hidden video and canvas elements */}
           <video ref={videoRef} className="hidden" autoPlay playsInline />
           <canvas ref={canvasRef} className="hidden" />
+
+          {/* White background layer */}
+          <div className="absolute inset-0 bg-white -z-10"></div>
+
           {/* Image element displaying the processed video stream */}
           <img
             ref={imageRef}
             alt="Processed Video Stream"
-            className={`w-full h-full object-cover ${
+            className={`w-full h-full object-cover z-10 ${
               flashAnimation ? "flash-animation" : ""
             }`}
           />

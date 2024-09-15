@@ -35,7 +35,9 @@ export default function NavBar() {
   };
 
   const handleSignIn = () => {
-    const userId = prompt("Please enter your user ID:");
+    const userId = prompt(
+      "Please enter your user ID:\n(e.g. Bob_8f0c3aae-30ce-4c6d-b6d1-0c3993e1808d)"
+    );
     if (userId) {
       localStorage.setItem("userId", userId);
       setUserId(userId);
@@ -51,7 +53,7 @@ export default function NavBar() {
 
   return (
     <>
-      <header className="p-4 flex justify-between items-center">
+      <header className="p-4 flex justify-between items-center bg-white bg-opacity-50">
         <Link href="/" passHref>
           <h1 className="text-3xl font-bold text-blue-800 cursor-pointer">
             GeomPT
