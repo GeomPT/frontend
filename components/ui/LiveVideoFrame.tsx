@@ -8,6 +8,7 @@ interface LiveVideoFrameProps {
   width: number;
   height: number;
   processingType: string;
+  includeButton?: boolean;
 }
 
 export default function LiveVideoFrame({
@@ -15,6 +16,7 @@ export default function LiveVideoFrame({
   width,
   height,
   processingType,
+  includeButton = false,
 }: LiveVideoFrameProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -132,24 +134,33 @@ export default function LiveVideoFrame({
   }, [streaming, processingType, width, height]);
 
   return (
-    <div
-      className="relative border border-gray-300 rounded-lg overflow-hidden"
-      style={{
-        width: "100%",
-        maxWidth: `${width}px`,
-        height: "auto",
-        aspectRatio: `${width} / ${height}`,
-      }}
-    >
-      {/* Hidden video and canvas elements */}
-      <video ref={videoRef} className="hidden" autoPlay playsInline />
-      <canvas ref={canvasRef} className="hidden" />
-      {/* Image element displaying the processed video stream */}
-      <img
-        ref={imageRef}
-        alt="Processed Video Stream"
-        className="w-full h-full object-cover"
-      />
-    </div>
+    <>
+      <div
+        className="relative border border-gray-300 rounded-lg overflow-hidden"
+        style={{
+          width: "100%",
+          maxWidth: `${width}px`,
+          height: "auto",
+          aspectRatio: `${width} / ${height}`,
+        }}
+      >
+        {/* Hidden video and canvas elements */}
+        <video ref={videoRef} className="hidden" autoPlay playsInline />
+        <canvas ref={canvasRef} className="hidden" />
+        {/* Image element displaying the processed video stream */}
+        <img
+          ref={imageRef}
+          alt="Processed Video Stream"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      {includeButton && (
+        <div className="flex flex-row justify-center items-center">
+          <button onClick={() => socketRef.current?.emit("begin_measurement")} className="rounded-lg p-2 mt-4 hover:bg-slate-50 shadow-md">
+            Begin ROM Measurement
+          </button>
+        </div>
+      )}
+    </>
   );
 }
