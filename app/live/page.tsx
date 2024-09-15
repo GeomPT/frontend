@@ -2,7 +2,6 @@
 
 import LiveVideoFrame from "@/components/ui/LiveVideoFrame";
 import { useState } from "react";
-import NavBar from "../navBar";
 
 export default function LivePage() {
     const [processingType, setProcessingType] = useState("elbow");

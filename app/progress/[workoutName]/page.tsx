@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import Image from "next/image";
-import NavBar from "../../navBar";
 import LiveVideoFrame from "@/components/ui/LiveVideoFrame";
 import exercisesData from "@/public/rom_exercises.json"
 

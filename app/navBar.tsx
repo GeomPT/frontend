@@ -43,8 +43,36 @@ export default function NavBar() {
         }
     };
 
-      {/* Gradient div below navbar */}
-      <div className="h-0.5 bg-gradient-to-r from-blue-300 to-purple-300 mb-8" />
-    </>
-  );
+    return (
+      <>
+        <header className="p-4 flex justify-between items-center">
+          <Link href="/" passHref>
+            <h1 className="text-3xl font-bold text-blue-800 cursor-pointer">
+              GeomPT
+            </h1>
+          </Link>
+          <div className="flex-grow flex justify-end">
+            <Link href="/exercises" passHref>
+              <h1 className="bg-sky-500 text-white text-lg font-bold py-2 px-4 rounded-lg cursor-pointer hover:bg-sky-700 transition duration-300">
+                Exercises
+              </h1>
+            </Link>
+            <Link href="/progress" passHref>
+              <h1 className="bg-sky-500 text-white text-lg font-bold py-2 px-4 rounded-lg ml-4 cursor-pointer hover:bg-sky-700 transition duration-300">
+                Assess
+              </h1>
+            </Link>
+            <button
+              onClick={handleSignIn}
+              className="bg-sky-500 text-white text-lg font-bold py-2 px-4 rounded-lg ml-4 cursor-pointer hover:bg-sky-700 transition duration-300"
+            >
+              {userData ? `Welcome ${userData.name}` : "Sign In"}
+            </button>
+          </div>
+        </header>
+
+        {/* Gradient div below navbar */}
+        <div className="h-0.5 bg-gradient-to-r from-blue-300 to-purple-300 mb-8" />
+      </>
+    );
 }

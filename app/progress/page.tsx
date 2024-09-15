@@ -1,10 +1,7 @@
-"use client";
-
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
 import Link from "next/link";
-import NavBar from "../navBar";
 import videoData from "@/public/rom_exercises.json";
 
 export default function Component() {
