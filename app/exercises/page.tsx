@@ -120,15 +120,7 @@ export default function Component() {
                                             {video.description}
                                         </p>
 
-                                        <button 
-                                            onClick={handleFetchGuidance}
-                                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                                        >
-                                            Get Exercise Guidance
-                                        </button>
-                                        <div className="mt-6 text-lg text-gray-700">
-                                            <p>{aiMessage}</p>
-                                        </div>
+                                        
                                         <div className="flex flex-wrap gap-2 mb-4">
                                             {video.technologies.map(
                                                 (tech, index) => {
