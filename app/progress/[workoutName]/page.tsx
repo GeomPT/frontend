@@ -5,7 +5,7 @@ import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import Image from "next/image";
 import LiveVideoFrame from "@/components/ui/LiveVideoFrame";
-import exercisesData from "@/public/rom_exercises.json"
+import exercisesData from "@/public/rom_exercises.json";
 
 const WorkoutProgressPage = ({
   params,
@@ -35,8 +35,8 @@ const WorkoutProgressPage = ({
     }
   }, [workoutName]);
 
+  // Check for userId in localStorage
   useEffect(() => {
-    // Check if the userId is stored in localStorage
     const storedUserId = localStorage.getItem("userId");
     if (storedUserId) {
       setUserId(storedUserId);
@@ -46,13 +46,11 @@ const WorkoutProgressPage = ({
   // Fetch data from the API
   useEffect(() => {
     const fetchData = async () => {
-      const storedUserId = localStorage.getItem("userId");
-      if (!storedUserId) return;
-      setUserId(storedUserId);
+      if (!userId) return;
 
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/api/users/${storedUserId}/${workoutName}`,
+          `http://127.0.0.1:5000/api/users/${userId}/${workoutName}`,
           { headers: { "Content-Type": "application/json" } }
         );
         if (!response.ok) throw new Error(`Error: ${response.statusText}`);
@@ -68,8 +66,7 @@ const WorkoutProgressPage = ({
       }
     };
     fetchData();
-  }, [workoutName]);
-
+  }, [userId, workoutName]);
 
   // Assign fake dates based on today's date minus 14 days
   const assignFakeDates = (num) => {
@@ -93,7 +90,6 @@ const WorkoutProgressPage = ({
   const angles = dataPoints.length
     ? dataPoints.slice(-14).map((dp) => dp.value)
     : [];
-
 
   const chartData = {
     labels,
@@ -239,7 +235,9 @@ const WorkoutProgressPage = ({
 
         {/* Recent Measurements Section */}
         <div className="mt-8">
-          <h3 className="text-2xl font-bold text-black mb-6">Recent Measurements</h3>
+          <h3 className="text-2xl font-bold text-black mb-6">
+            Recent Measurements
+          </h3>
           <div className="flex items-center justify-center">
             <button
               onClick={handleScrollLeft}
@@ -279,7 +277,10 @@ const WorkoutProgressPage = ({
                           />
                         ) : (
                           <div
-                            style={{ width: "200px", height: "150px" }}
+                            style={{
+                              width: "200px",
+                              height: "150px",
+                            }}
                             className="bg-white rounded-lg"
                           ></div>
                         )}
@@ -324,11 +325,12 @@ const WorkoutProgressPage = ({
             className="relative bg-white p-2 rounded-lg shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <video
-              src={enlargedMedia.videoUrl}
-              controls
-              autoPlay
-              className="max-w-full max-h-[80vh] rounded-lg"
+            <Image
+              src={enlargedMedia.imageUrl}
+              alt="Enlarged Media"
+              width={800} // Set the desired width
+              height={600} // Set the desired height
+              className="max-w-full max-h-[80vh] rounded-lg cursor-pointer"
             />
             <button
               onClick={() => setEnlargedMedia(null)}
