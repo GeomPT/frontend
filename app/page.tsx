@@ -38,11 +38,7 @@ export default function LandingPage() {
               start session
             </h1>
           </Link>
-          <Link href="/tutorial" passHref>
-            <h1 className="bg-pink-600 text-white text-lg font-bold py-2 px-4 rounded-lg ml-4 cursor-pointer hover:bg-pink-700 transition duration-300">
-              tutorials
-            </h1>
-          </Link>
+        
         </div>
       </header>
       <div className="h-0.5 bg-gradient-to-r from-blue-300 to-purple-300" />
