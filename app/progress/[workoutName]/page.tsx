@@ -260,7 +260,7 @@ const WorkoutProgressPage = ({
                                                     </div>
                                                 </div>
                                                 {/* Caption */}
-                                                <p className="text-sm font-semibold text-center mt-2 bg-white bg-opacity-75 rounded py-1 px-2 shadow-sm color-black">
+                                                <p className="text-sm font-semibold text-center mt-2 bg-white bg-opacity-75 rounded py-1 px-2 shadow-sm text-black">
                                                     {formattedDate} -{" "}
                                                     {clip.value}°
                                                 </p>
