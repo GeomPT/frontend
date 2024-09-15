@@ -17,7 +17,11 @@ export default function Component() {
         <h1 className="text-3xl font-bold text-gray-800 mb-8">GeomPT Progress</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {videoData.map((video) => (
-            <Card key={video.id} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Link key={video.id} href={`/plan/${video.id}`}>
+            <Card 
+            key={video.id} 
+            className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105" 
+          >
               <CardHeader className="flex flex-col items-center text-center">
                 <h2 className="text-xl font-semibold mb-4">{video.title}</h2>
                 <div className="h-[100px] w-full flex items-center justify-center mb-4">
@@ -44,6 +48,7 @@ export default function Component() {
                 <p className="text-sm text-gray-500 mt-2">33% complete</p>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       </div>
