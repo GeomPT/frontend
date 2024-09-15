@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import io, { Socket } from "socket.io-client";
 
 interface LiveVideoFrameProps {
@@ -22,6 +22,9 @@ export default function LiveVideoFrame({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const socketRef = useRef<Socket | null>(null);
+
+  const [measurementState, setMeasurementState] = useState("idle");
+  const [flashAnimation, setFlashAnimation] = useState(false);
 
   useEffect(() => {
     if (!streaming) {
@@ -84,6 +87,23 @@ export default function LiveVideoFrame({
       }
     });
 
+    // Handle measurement events
+    newSocket.on("measurement_saved", (data) => {
+      setMeasurementState("saved");
+      // Trigger flash animation
+      setFlashAnimation(true);
+      // Reset flashAnimation after 0.5 seconds
+      setTimeout(() => setFlashAnimation(false), 500);
+      // Optionally reset measurementState to 'idle' after some time
+      setTimeout(() => setMeasurementState("idle"), 2000);
+    });
+
+    newSocket.on("measurement_failed", (data) => {
+      setMeasurementState("failed");
+      // Optionally reset measurementState to 'idle' after some time
+      setTimeout(() => setMeasurementState("idle"), 2000);
+    });
+
     const FRAME_RATE = 30;
     let frameTimer: NodeJS.Timeout;
 
@@ -130,8 +150,22 @@ export default function LiveVideoFrame({
       if (frameTimer) {
         clearInterval(frameTimer);
       }
+      // Clean up socket event listeners
+      newSocket.off("measurement_saved");
+      newSocket.off("measurement_failed");
     };
   }, [streaming, processingType, width, height]);
+
+  const handleBeginMeasurement = () => {
+    if (
+      measurementState === "idle" ||
+      measurementState === "saved" ||
+      measurementState === "failed"
+    ) {
+      socketRef.current?.emit("begin_measurement");
+      setMeasurementState("in_progress");
+    }
+  };
 
   return (
     <>
@@ -151,13 +185,25 @@ export default function LiveVideoFrame({
         <img
           ref={imageRef}
           alt="Processed Video Stream"
-          className="w-full h-full object-cover"
+          className={`w-full h-full object-cover ${
+            flashAnimation ? "flash-animation" : ""
+          }`}
         />
       </div>
       {includeButton && (
         <div className="flex flex-row justify-center items-center">
-          <button onClick={() => socketRef.current?.emit("begin_measurement")} className="rounded-lg p-2 mt-4 hover:bg-slate-50 shadow-md">
-            Begin ROM Measurement
+          <button
+            onClick={handleBeginMeasurement}
+            disabled={measurementState === "in_progress"}
+            className="rounded-lg p-2 mt-4 hover:bg-slate-50 shadow-md"
+          >
+            {measurementState === "idle" ||
+            measurementState === "saved" ||
+            measurementState === "failed"
+              ? "Begin ROM Measurement"
+              : measurementState === "in_progress"
+              ? "Measuring..."
+              : "Begin ROM Measurement"}
           </button>
         </div>
       )}
