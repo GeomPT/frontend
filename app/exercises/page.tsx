@@ -49,8 +49,7 @@ const videoData = [
     {
         id: 7,
         title: "Knee to Chest Stretch",
-        description:
-            "Stretching lower back and glutes by pulling knee toward chest.",
+        description: "Pulling knee toward chest.",
         technologies: ["Easy", "No other items necessary"],
     },
     {
