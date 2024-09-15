@@ -114,11 +114,11 @@ export default function LiveVideoFrame({
     });
 
     // Handle measurement events
-    newSocket.on("measurement_saved", (data) => {
-      setMeasurementState("saved");
+    newSocket.on("measurement_complete", (data) => {
+      setMeasurementState("complete");
       setFlashAnimation(true);
-      setTimeout(() => setFlashAnimation(false), 500);
-      setTimeout(() => setMeasurementState("idle"), 2000);
+      setTimeout(() => setFlashAnimation(false), 250);
+      setTimeout(() => setMeasurementState("idle"), 250);
     });
 
     newSocket.on("measurement_failed", (data) => {
@@ -165,7 +165,7 @@ export default function LiveVideoFrame({
     return () => {
       if (newSocket) {
         newSocket.off("processed_frame");
-        newSocket.off("measurement_saved");
+        newSocket.off("measurement_complete");
         newSocket.off("measurement_failed");
         newSocket.disconnect();
       }
@@ -181,7 +181,7 @@ export default function LiveVideoFrame({
   const handleBeginMeasurement = () => {
     if (
       measurementState === "idle" ||
-      measurementState === "saved" ||
+      measurementState === "complete" ||
       measurementState === "failed"
     ) {
       socketRef.current?.emit("begin_measurement");
@@ -226,7 +226,7 @@ export default function LiveVideoFrame({
             className="rounded-lg p-2 text-black mt-4 hover:bg-slate-50 shadow-md"
           >
             {measurementState === "idle" ||
-            measurementState === "saved" ||
+            measurementState === "complete" ||
             measurementState === "failed"
               ? "Begin ROM Measurement"
               : measurementState === "in_progress"
