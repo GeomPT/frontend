@@ -39,7 +39,7 @@ export default function LandingPage() {
         </Link>
 
         <div className="mt-8 flex justify-center mb-16"> {/* Added mb-16 here */}
-          <div className="relative w-[200px] h-[200px]">
+          <div className="relative w-64 h-64">
             {" "}
             {/* Fixed size for image container */}
             <AnimatePresence>
@@ -57,9 +57,9 @@ export default function LandingPage() {
                   <Image
                     src={src}
                     alt={`Image ${index + 1}`}
-                    width={200}
-                    height={200}
-                    className="rounded-lg"
+                    width={300}
+                    height={300}
+                    className="rounded-xl shadow-lg bg-white bg-opacity-50"
                   />
                 </motion.div>
               ))}
