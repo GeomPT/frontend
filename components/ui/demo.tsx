@@ -41,6 +41,7 @@ export default function Demo() {
                   streaming={streaming}
                   width={256}
                   height={256}
+                  processingType="elbow"
                 />
               ) : (
                 <User size={64} className="text-gray-400" />
