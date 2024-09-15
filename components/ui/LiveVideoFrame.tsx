@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation"; 
 import io, { Socket } from "socket.io-client";
 
 interface LiveVideoFrameProps {
@@ -22,13 +23,27 @@ export default function LiveVideoFrame({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const socketRef = useRef<Socket | null>(null);
+  const router = useRouter(); 
 
+  const [userId, setUserId] = useState<string | null>(null);
   const [measurementState, setMeasurementState] = useState("idle");
   const [flashAnimation, setFlashAnimation] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const isConnectedRef = useRef(false);
 
   useEffect(() => {
+    // Check for userId in localStorage
+    const storedUserId = localStorage.getItem("userId");
+
+    if (!storedUserId) {
+      // Redirect if userId is missing
+      console.log("ERROR: Redirected; Need to be signed in to take video measurements")
+      router.push("/");
+      return;
+    }
+
+    setUserId(storedUserId);
+
     if (!streaming) {
       if (socketRef.current) {
         socketRef.current.disconnect();
@@ -71,6 +86,7 @@ export default function LiveVideoFrame({
 
     const newSocket = io("http://127.0.0.1:5000", {
       transports: ["websocket"],
+      query: { userId: storedUserId }, // Send userId with the WebSocket connection
     });
 
     socketRef.current = newSocket;
@@ -96,17 +112,13 @@ export default function LiveVideoFrame({
     // Handle measurement events
     newSocket.on("measurement_saved", (data) => {
       setMeasurementState("saved");
-      // Trigger flash animation
       setFlashAnimation(true);
-      // Reset flashAnimation after 0.5 seconds
       setTimeout(() => setFlashAnimation(false), 500);
-      // Optionally reset measurementState to 'idle' after some time
       setTimeout(() => setMeasurementState("idle"), 2000);
     });
 
     newSocket.on("measurement_failed", (data) => {
       setMeasurementState("failed");
-      // Optionally reset measurementState to 'idle' after some time
       setTimeout(() => setMeasurementState("idle"), 2000);
     });
 
@@ -160,7 +172,7 @@ export default function LiveVideoFrame({
         clearInterval(frameTimer);
       }
     };
-  }, [streaming, processingType, width, height]);
+  }, [streaming, processingType, width, height, router]);
 
   const handleBeginMeasurement = () => {
     if (
@@ -185,14 +197,9 @@ export default function LiveVideoFrame({
         }}
       >
         <div className="relative rounded-lg overflow-hidden">
-          {/* Hidden video and canvas elements */}
           <video ref={videoRef} className="hidden" autoPlay playsInline />
           <canvas ref={canvasRef} className="hidden" />
-
-          {/* White background layer */}
           <div className="absolute inset-0 bg-white -z-10"></div>
-
-          {/* Image element displaying the processed video stream */}
           <img
             ref={imageRef}
             alt="Processed Video Stream"
