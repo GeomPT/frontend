@@ -34,6 +34,7 @@ export default function LiveVideoFrame({
   useEffect(() => {
     // Check for userId in localStorage
     const storedUserId = localStorage.getItem("userId");
+    console.log("storedUserId", storedUserId);
 
     if (!storedUserId) {
       // Redirect if userId is missing
@@ -85,8 +86,12 @@ export default function LiveVideoFrame({
 
     const newSocket = io("http://127.0.0.1:5000", {
       transports: ["websocket"],
-      query: { userId: storedUserId }, // Send userId with the WebSocket connection
+      auth: {
+        userId: storedUserId, // Send userId in auth
+      },
     });
+
+
 
     socketRef.current = newSocket;
 
