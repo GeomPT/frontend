@@ -7,7 +7,7 @@ export default function LivePage() {
   const [processingType, setProcessingType] = useState("elbow");
 
   return (
-    <>
+    <div className="p-4">
       <h1 className="text-xl font-semibold mb-4">Video Stream:</h1>
       <LiveVideoFrame
         streaming={true}
@@ -16,11 +16,21 @@ export default function LivePage() {
         processingType={processingType}
       />
 
-      <select className="mt-4 shadow-sm" value={processingType} onChange={(e) => setProcessingType(e.target.value)}>
+      <select
+        className="mt-4 shadow-md hover:bg-slate-50"
+        value={processingType}
+        onChange={(e) => setProcessingType(e.target.value)}
+      >
         <option value="shoulder">Shoulder</option>
         <option value="elbow">Elbow</option>
-        <option value="hip">Hip</option>
+        <option value="knee">Knee</option>
       </select>
-    </>
+
+      <div>
+        <button className="rounded-lg p-2 mt-4 hover:bg-slate-50 shadow-md">
+          Begin ROM Measurement
+        </button>
+      </div>
+    </div>
   );
 }
