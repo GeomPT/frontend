@@ -209,7 +209,7 @@ export default function LiveVideoFrame({
         </div>
         {!isConnected && (
           <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-            <h1 className="text-4xl font-semibold">Connecting to camera...</h1>
+            <h1 className="text-4xl text-black font-semibold">Connecting to camera...</h1>
           </div>
         )}
       </div>
@@ -218,7 +218,7 @@ export default function LiveVideoFrame({
           <button
             onClick={handleBeginMeasurement}
             disabled={measurementState === "in_progress"}
-            className="rounded-lg p-2 mt-4 hover:bg-slate-50 shadow-md"
+            className="rounded-lg p-2 text-black mt-4 hover:bg-slate-50 shadow-md"
           >
             {measurementState === "idle" ||
             measurementState === "saved" ||
