@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router"; // To handle redirection
+import { useRouter } from "next/navigation"; 
 import io, { Socket } from "socket.io-client";
 
 interface LiveVideoFrameProps {
