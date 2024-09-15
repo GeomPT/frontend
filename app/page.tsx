@@ -47,7 +47,7 @@ export default function LandingPage() {
         <h2 className="text-5xl md:text-5xl font-extrabold text-blue-900 mb-8 leading-tight">
           Enhancing Your Physical Therapy with AI
         </h2>
-        <p className="text-xl md:text-2xl text-blue-800 mb-12 max-w-3xl mx-auto">
+        <p className ="text-xl md:text-1xl text-white-800 mb-10 max-w-3xl mx-auto" style={{ color: '#000' }}>
           Experience the future of rehabilitation with our AI-powered physical
           therapy solutions. Personalized, precise, and always by your side.
         </p>
@@ -59,7 +59,6 @@ export default function LandingPage() {
 
         <div className="mt-8 flex justify-center">
           <div className="relative w-[200px] h-[200px]">
-            {" "}
             {/* Fixed size for image container */}
             <AnimatePresence>
               {images.map((src, index) => (
@@ -68,10 +67,7 @@ export default function LandingPage() {
                   className={`absolute inset-0 ${
                     index === activeImageIndex ? "block" : "hidden"
                   }`}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.5 }}
-                  transition={{ duration: 0.5 }}
+                 
                 >
                   <Image
                     src={src}
@@ -90,7 +86,7 @@ export default function LandingPage() {
       <Demo />
 
       {/* Footer section for copyright */}
-      <footer className="bg-gray-800 text-black text-center py-4 shadow-md">
+      <footer className="bg-gray-800 text-white text-center py-4 shadow-md">
         <p className="text-sm"><span>&copy;</span> {new Date().getFullYear()} GeoPT. All rights reserved.</p>
       </footer>
 
