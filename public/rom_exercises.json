@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "shoulder1",
+    "processingType": "shoulder",
+    "title": "Shoulder Forward Elevation",
+    "description": "Raising arm forward and upward.",
+    "technologies": ["Easy", "No other items necessary"]
+  },
+  {
+    "id": 2,
+    "name": "shoulder2",
+    "processingType": "shoulder",
+    "title": "Shoulder Abduction",
+    "description": "Raising arm sideways and upward.",
+    "technologies": ["Easy"]
+  },
+  {
+    "id": 3,
+    "name": "leg",
+    "processingType": "knee",
+    "title": "Straight Leg Extension",
+    "description": "Starting with your feet on the floor, slowly extend your leg out.",
+    "technologies": ["Medium"]
+  }
+]

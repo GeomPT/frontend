@@ -25,6 +25,8 @@ export default function LiveVideoFrame({
 
   const [measurementState, setMeasurementState] = useState("idle");
   const [flashAnimation, setFlashAnimation] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
+  const isConnectedRef = useRef(false);
 
   useEffect(() => {
     if (!streaming) {
@@ -76,6 +78,10 @@ export default function LiveVideoFrame({
     newSocket.emit("start_processing", { processingType });
 
     newSocket.on("processed_frame", (frameData: ArrayBuffer) => {
+      if (!isConnectedRef.current) {
+        setIsConnected(true);
+        isConnectedRef.current = true;
+      }
       const blob = new Blob([frameData], { type: "image/jpeg" });
       const url = URL.createObjectURL(blob);
       if (imageRef.current) {
@@ -142,6 +148,9 @@ export default function LiveVideoFrame({
 
     return () => {
       if (newSocket) {
+        newSocket.off("processed_frame");
+        newSocket.off("measurement_saved");
+        newSocket.off("measurement_failed");
         newSocket.disconnect();
       }
       if (stream) {
@@ -150,9 +159,6 @@ export default function LiveVideoFrame({
       if (frameTimer) {
         clearInterval(frameTimer);
       }
-      // Clean up socket event listeners
-      newSocket.off("measurement_saved");
-      newSocket.off("measurement_failed");
     };
   }, [streaming, processingType, width, height]);
 
@@ -170,7 +176,7 @@ export default function LiveVideoFrame({
   return (
     <>
       <div
-        className="relative border border-gray-300 rounded-lg overflow-hidden"
+        className="relative rounded-lg p-1 bg-gradient-to-r from-blue-500 to-pink-500"
         style={{
           width: "100%",
           maxWidth: `${width}px`,
@@ -178,17 +184,24 @@ export default function LiveVideoFrame({
           aspectRatio: `${width} / ${height}`,
         }}
       >
-        {/* Hidden video and canvas elements */}
-        <video ref={videoRef} className="hidden" autoPlay playsInline />
-        <canvas ref={canvasRef} className="hidden" />
-        {/* Image element displaying the processed video stream */}
-        <img
-          ref={imageRef}
-          alt="Processed Video Stream"
-          className={`w-full h-full object-cover ${
-            flashAnimation ? "flash-animation" : ""
-          }`}
-        />
+        <div className="rounded-lg overflow-hidden">
+          {/* Hidden video and canvas elements */}
+          <video ref={videoRef} className="hidden" autoPlay playsInline />
+          <canvas ref={canvasRef} className="hidden" />
+          {/* Image element displaying the processed video stream */}
+          <img
+            ref={imageRef}
+            alt="Processed Video Stream"
+            className={`w-full h-full object-cover ${
+              flashAnimation ? "flash-animation" : ""
+            }`}
+          />
+        </div>
+        {!isConnected && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
+            <h1 className="text-4xl font-semibold">Connecting to camera...</h1>
+          </div>
+        )}
       </div>
       {includeButton && (
         <div className="flex flex-row justify-center items-center">
