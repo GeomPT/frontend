@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['orthoinfo.aaos.org'],
+        domains: ['orthoinfo.aaos.org', 'storage.googleapis.com'],
     },
 };
 
