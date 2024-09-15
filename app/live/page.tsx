@@ -16,6 +16,7 @@ export default function LivePage() {
                 width={1280}
                 height={720}
                 processingType={processingType}
+                includeButton={true}
             />
 
             <select
@@ -27,12 +28,6 @@ export default function LivePage() {
                 <option value="elbow">Elbow</option>
                 <option value="knee">Knee</option>
             </select>
-
-            <div>
-                <button className="rounded-lg p-2 mt-4 hover:bg-slate-50 shadow-md">
-                    Begin ROM Measurement
-                </button>
-            </div>
         </div>
     );
 }
