@@ -38,15 +38,15 @@ const videoData = [
 
 export default function Component() {
     return (
-        <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 to-purple-100">
+        <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 to-purple-100 pb-8">
             <NavBar />
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold text-gray-800 mb-8">
+                {/* <h1 className="text-3xl font-bold text-gray-800 mb-8">
                     GeomPT Progress
-                </h1>
+                </h1> */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {videoData.map((video) => (
-                        <Link key={video.id} href={`/plan/${video.id}`}>
+                        <Link key={video.id} href={`/exercises/${video.id}`}>
                             <Card
                                 key={video.id}
                                 className="bg-white shadow-lg hover:shadow-xl flex-shrink-0 relative duration-300 transform hover:scale-105"
