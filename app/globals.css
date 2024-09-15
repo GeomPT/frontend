@@ -108,5 +108,5 @@ body {
 }
 
 .flash-animation {
-  animation: flashAnimation 0.5s ease-in-out;
+  animation: flashAnimation 0.25s ease-in-out;
 }

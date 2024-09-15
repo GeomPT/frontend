@@ -35,7 +35,7 @@ export default function LandingPage() {
           Experience the future of rehabilitation with our AI-powered physical
           therapy solutions. Personalized, precise, and always by your side.
         </p>
-        <Link href="/plan">
+        <Link href="/exercises">
           <button className="bg-blue-600 text-white text-lg font-semibold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300">
             Get Started
           </button>

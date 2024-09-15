@@ -7,36 +7,39 @@ import Link from "next/link";
 import NavBar from "../navBar";
 
 const videoData = [
-    {
-        id: 1,
-        name: "shoulder1",
-        title: "Shoulder Forward Elevation",
-        description: "Raising arm forward and upward.",
-        technologies: ["Easy", "No other items necessary"],
-    },
-    {
-        id: 2,
-        name: "shoulder2",
-        title: "Shoulder Abduction",
-        year: "2023",
-        description: "Raising arm sideways and upward.",
-        technologies: ["Easy"],
-    },
-    {
-        id: 3,
-        name: "knee1",
-        title: "Shoulder Adduction (Isometric)",
-        year: "2023",
-        description: "Pressing arm inward without movement.",
-        technologies: ["Medium"],
-    },
-    // {
-    //     id: 4,
-    //     title: "Supported Shoulder Rotation (Assisted)",
-    //     year: "2022",
-    //     description: "Guided rotation of shoulder joint.",
-    //     technologies: ["Medium"],
-    // },
+  {
+    id: 1,
+    name: "shoulder1",
+    processingType: "shoulder",
+    title: "Shoulder Forward Elevation",
+    description: "Raising arm forward and upward.",
+    technologies: ["Easy", "No other items necessary"],
+  },
+  {
+    id: 2,
+    name: "shoulder2",
+    processingType: "shoulder",
+    title: "Shoulder Abduction",
+    year: "2023",
+    description: "Raising arm sideways and upward.",
+    technologies: ["Easy"],
+  },
+  {
+    id: 3,
+    name: "leg",
+    processingType: "knee",
+    title: "Straight Leg Extension",
+    year: "2023",
+    description: "Starting with your feet on the floor, slowly extend your leg out.",
+    technologies: ["Medium"],
+  },
+  // {
+  //     id: 4,
+  //     title: "Supported Shoulder Rotation (Assisted)",
+  //     year: "2022",
+  //     description: "Guided rotation of shoulder joint.",
+  //     technologies: ["Medium"],
+  // },
 ];
 
 export default function Component() {

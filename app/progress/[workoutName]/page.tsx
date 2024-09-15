@@ -6,6 +6,7 @@ import "chart.js/auto";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import NavBar from "../../navBar";
+import LiveVideoFrame from "@/components/ui/LiveVideoFrame";
 
 const WorkoutProgressPage = ({
     params,
@@ -13,6 +14,21 @@ const WorkoutProgressPage = ({
     params: { workoutName: string };
 }) => {
     const { workoutName } = params;
+
+    // Hard map from workoutName (url and in DB) to processingType, which are
+    // distinct. This is a temporary solution.
+    const workoutToProcessingTypeMap = {
+      'shoulder1': "shoulder",
+      'shoulder2': "shoulder",
+      'leg': "knee",
+    };
+    // what do this even do bro
+    const processingType =
+    workoutToProcessingTypeMap[
+        workoutName as keyof typeof workoutToProcessingTypeMap
+    ] || "default";
+    console.log(processingType)
+
 
     const [searchTerm, setSearchTerm] = useState("");
     const [dataPoints, setDataPoints] = useState([]);
@@ -178,6 +194,7 @@ const WorkoutProgressPage = ({
     return (
         <div className="bg-white min-h-screen">
             <NavBar />
+            <LiveVideoFrame width={1280} height={720} processingType={processingType} streaming={true} includeButton={true}/>
 
             {/* Single Workout Display */}
             {workoutName.toLowerCase().includes(searchTerm.toLowerCase()) && (
