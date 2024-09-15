@@ -55,7 +55,7 @@ export default function NavBar() {
     <>
       <header className="p-4 flex justify-between items-center bg-white bg-opacity-50">
         <Link href="/" passHref>
-          <h1 className="text-3xl font-bold text-blue-800 cursor-pointer">
+          <h1 className="text-4xl font-bold text-sky-500 cursor-pointer">
             GeomPT
           </h1>
         </Link>

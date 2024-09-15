@@ -4,76 +4,75 @@ import Image from "next/image";
 import Link from "next/link";
 
 const videoData = [
-    {
-        id: 1,
-        title: "Shoulder Forward Elevation",
-        description: "Raising arm forward and upward.",
-        technologies: ["Easy", "No other items necessary"],
-    },
-    {
-        id: 2,
-        title: "Shoulder Abduction",
-        year: "2023",
-        description: "Raising arm sideways and upward.",
-        technologies: ["Easy"],
-    },
-    {
-        id: 3,
-        title: "Shoulder Adduction (Isometric)",
-        year: "2023",
-        description: "Pressing arm inward without movement.",
-        technologies: ["Medium"],
-    },
-    {
-        id: 4,
-        title: "Supported Shoulder Rotation (Assisted)",
-        year: "2022",
-        description: "Guided rotation of shoulder joint.",
-        technologies: ["Medium"],
-    },
-    {
-        id: 5,
-        title: "Hip Abduction and Adduction",
-        description: "Raising leg outward and inward while lying down.",
-        technologies: ["Medium", "Requires mat or flat surface"],
-    },
-    {
-        id: 6,
-        title: "Hip Internal Rotation MMT",
-        description: "Rotating the hip inward while lying down.",
-        technologies: ["Medium", "Requires mat or bench"],
-    },
-    {
-        id: 7,
-        title: "Knee to Chest Stretch",
-        description: "Pulling knee toward chest.",
-        technologies: ["Easy", "No other items necessary"],
-    },
-    {
-        id: 8,
-        title: "Prone Hip Extension",
-        description: "Lifting leg upward while lying on your stomach.",
-        technologies: ["Medium", "Requires flat surface or mat"],
-    },
-    {
-        id: 9,
-        title: "Seated Spinal Rotation Stretch",
-        description: "Twisting the spine while seated to stretch the back.",
-        technologies: ["Easy", "No other items necessary"],
-    },
-    {
-        id: 10,
-        title: "Supine Active Hamstring Stretch",
-        description: "Stretching hamstrings while lying on your back.",
-        technologies: ["Easy", "No other items necessary"],
-    },
-    {
-        id: 11,
-        title: "TFL / IT Band Stretch (Standing)",
-        description:
-            "Stretching the iliotibial band by leaning against a wall.",
-        technologies: ["Easy", "Requires wall support"],
-    },
+  {
+    id: 1,
+    title: "Shoulder Forward Elevation",
+    description: "Raising arm forward and upward.",
+    technologies: ["Easy", "No equipment necessary"],
+  },
+  {
+    id: 2,
+    title: "Shoulder Abduction",
+    year: "2023",
+    description: "Raising arm sideways and upward.",
+    technologies: ["Easy", "No equipment necessary"],
+  },
+  {
+    id: 3,
+    title: "Shoulder Adduction (Isometric)",
+    year: "2023",
+    description: "Pressing arm inward without movement.",
+    technologies: ["Medium", "No equipment necessary"],
+  },
+  {
+    id: 4,
+    title: "Supported Shoulder Rotation (Assisted)",
+    year: "2022",
+    description: "Guided rotation of shoulder joint.",
+    technologies: ["Medium", "No equipment necessary"],
+  },
+  {
+    id: 5,
+    title: "Hip Abduction and Adduction",
+    description: "Raising leg outward and inward while lying down.",
+    technologies: ["Medium", "Requires mat or flat surface"],
+  },
+  {
+    id: 6,
+    title: "Hip Internal Rotation MMT",
+    description: "Rotating the hip inward while lying down.",
+    technologies: ["Medium", "Requires mat or bench"],
+  },
+  {
+    id: 7,
+    title: "Knee to Chest Stretch",
+    description: "Pulling knee toward chest.",
+    technologies: ["Easy", "No equipment necessary"],
+  },
+  {
+    id: 8,
+    title: "Prone Hip Extension",
+    description: "Lifting leg upward while lying on your stomach.",
+    technologies: ["Medium", "Requires flat surface or mat"],
+  },
+  {
+    id: 9,
+    title: "Seated Spinal Rotation Stretch",
+    description: "Twisting the spine while seated to stretch the back.",
+    technologies: ["Easy", "No equipment necessary"],
+  },
+  {
+    id: 10,
+    title: "Supine Active Hamstring Stretch",
+    description: "Stretching hamstrings while lying on your back.",
+    technologies: ["Easy", "No equipment necessary"],
+  },
+  {
+    id: 11,
+    title: "TFL / IT Band Stretch (Standing)",
+    description: "Stretching the iliotibial band by leaning against a wall.",
+    technologies: ["Easy", "Requires wall support"],
+  },
 ];
 
 export default function Component() {
@@ -125,19 +124,19 @@ export default function Component() {
                                             {video.technologies.map(
                                                 (tech, index) => {
                                                     let color = "text-gray-700";
-                                                    if (tech === "Easy") {
-                                                        color =
-                                                            "text-green-700";
-                                                    } else if (
-                                                        tech === "Medium"
-                                                    ) {
-                                                        color =
-                                                            "text-yellow-700";
-                                                    } else if (
-                                                        tech === "Hard"
-                                                    ) {
-                                                        color = "text-red-700";
-                                                    }
+                                                    // if (tech === "Easy") {
+                                                    //     color =
+                                                    //         "text-green-700";
+                                                    // } else if (
+                                                    //     tech === "Medium"
+                                                    // ) {
+                                                    //     color =
+                                                    //         "text-yellow-700";
+                                                    // } else if (
+                                                    //     tech === "Hard"
+                                                    // ) {
+                                                    //     color = "text-red-700";
+                                                    // }
 
                                                     const className = `px-2 py-1 bg-gray-200 rounded-full text-xs ${color}`;
 
