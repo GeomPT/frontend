@@ -22,6 +22,7 @@ const WorkoutProgressPage = ({
     const scrollContainerRef = useRef(null);
     const clipRefs = useRef([]);
     const [userId, setUserId] = useState("");
+    const [aiMessage, setAiMessage] = useState("");
 
     // Fetch exercise data
     useEffect(() => {
@@ -73,6 +74,50 @@ const WorkoutProgressPage = ({
         };
         fetchData();
     }, [userId, workoutName]);
+
+    const fetchExerciseGuidance = async () => {
+      const systemMessage = "You are a highly knowledgeable assistant specialized in physical therapy, rehabilitation exercises, and injury prevention. Your task is to provide accurate, step-by-step instructions for performing various physical therapy stretches and strengthening exercises. In addition, you will also offer detailed guidance on the angles at which different joints should be positioned or moved during these exercises to optimize performance and prevent injury. Your responses should be clear, concise, and professional, targeting users recovering from injuries or improving flexibility and strength. Include information on recommended repetitions, sets, angles of exertion, and safety precautions whenever applicable. Ensure the explanations are easy to understand and follow a logical progression. The data is given in degrees. Only give four lines of information.";
+      const userMessage = `Based on the following data points for the ${workoutName} exercise, provide a brief analysis of the user's progress and suggestions for improvement: ${JSON.stringify(dataPoints)}`;
+  
+      try {
+        const response = await fetch("https://proxy.tune.app/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "sk-tune-KKpqSWmI1wacEA4YYX45Br0Buf90wuUnBOU",
+          },
+          body: JSON.stringify({
+            temperature: 0.8,
+            messages: [
+              { role: "system", content: systemMessage },
+              { role: "user", content: userMessage }
+            ],
+            model: "meta/llama-3.1-70b-instruct",
+            stream: false,
+            frequency_penalty: 0,
+            max_tokens: 900
+          })
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to fetch exercise guidance');
+        }
+  
+        const data = await response.json();
+        setAiMessage(data.choices[0].message.content);
+      } catch (error) {
+        console.error('Error fetching exercise guidance:', error);
+        setAiMessage("Sorry, we couldn't retrieve insights at this time.");
+      }
+    };
+  
+    const handleFetchGuidance = () => {
+      if (dataPoints.length > 0) {
+        fetchExerciseGuidance();
+      } else {
+        setAiMessage("Please provide data points before requesting guidance.");
+      }
+    };
 
     // Assign fake dates based on today's date minus 14 days
     const assignFakeDates = (num) => {
@@ -214,6 +259,17 @@ const WorkoutProgressPage = ({
                     />
                 </div>
             </div>
+            <div className="flex flex-col items-center mt-4">
+                <button 
+                    onClick={handleFetchGuidance}
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                    Get PT Guidance
+                </button>
+                <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+                    <p className="text-lg text-gray-700">{aiMessage}</p>
+                </div>
+            </div>
 
             {/* Single Workout Display */}
             <div className="rounded-lg shadow-md p-6 mb-6 text-center">
@@ -233,6 +289,7 @@ const WorkoutProgressPage = ({
                     </div>
                 </div>
 
+               
                 {/* Recent Clips Section */}
                 <div className="mt-8">
                     <h3 className="text-2xl font-bold text-black mb-6">
