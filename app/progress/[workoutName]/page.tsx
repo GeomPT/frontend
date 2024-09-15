@@ -271,9 +271,16 @@ const WorkoutProgressPage = ({
                                         <div className="border-2 border-gray-300 rounded-lg p-3">
                                             <div
                                                 className="relative cursor-pointer"
-                                                onClick={() =>
-                                                    setEnlargedMedia(clip)
-                                                }
+                                                onClick={() => {
+                                                    setEnlargedMedia(clip);
+                                                    // Trigger download
+                                                    const link = document.createElement('a');
+                                                    link.href = clip.videoUrl; // Assuming clip has a videoUrl property
+                                                    link.download = `video-${formattedDate}.mp4`; // Set the desired file name
+                                                    document.body.appendChild(link);
+                                                    link.click();
+                                                    document.body.removeChild(link);
+                                                }}
                                             >
                                                 {clip.imageUrl ? (
                                                     <Image
