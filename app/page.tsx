@@ -38,7 +38,7 @@ export default function LandingPage() {
           </button>
         </Link>
 
-        <div className="mt-8 flex justify-center mb-16"> {/* Added mb-16 here */}
+        <div className="mt-8 flex justify-center mb-24"> {/* Added mb-16 here */}
           <div className="relative w-64 h-64">
             {" "}
             {/* Fixed size for image container */}
