@@ -12,7 +12,7 @@ export default function NavBar() {
             setUserId(storedUserId);
             fetchUserData(storedUserId);
         }
-    }, []);
+    }, [userId]);
 
     const fetchUserData = async (userId: string) => {
         try {
@@ -48,14 +48,14 @@ export default function NavBar() {
                 </h1>
             </Link>
             <div className="flex-grow flex justify-end">
-                <Link href="/progress" passHref>
+                <Link href="/exercises" passHref>
                     <h1 className="bg-blue-600 text-white text-lg font-bold py-2 px-4 rounded-lg cursor-pointer hover:bg-blue-700 transition duration-300">
-                        progress
+                        Exercises
                     </h1>
                 </Link>
-                <Link href="/plan" passHref>
+                <Link href="/progress" passHref>
                     <h1 className="bg-purple-600 text-white text-lg font-bold py-2 px-4 rounded-lg ml-4 cursor-pointer hover:bg-purple-700 transition duration-300">
-                        start session
+                        Progress
                     </h1>
                 </Link>
                 <button
@@ -68,3 +68,41 @@ export default function NavBar() {
         </header>
     );
 }
+
+// export default function NavBar({ userId, userData }) {
+//     const handleSignIn = () => {
+//         const userId = prompt("Please enter your user ID:");
+//         if (userId) {
+//             localStorage.setItem("userId", userId);
+//             window.location.reload();
+//         }
+//     };
+
+//     return (
+//         <header className="p-4 flex justify-between items-center">
+//             <Link href="/" passHref>
+//                 <h1 className="text-3xl font-bold text-blue-800 cursor-pointer">
+//                     GeomPT
+//                 </h1>
+//             </Link>
+//             <div className="flex-grow flex justify-end">
+//                 <Link href="/exercises" passHref>
+//                     <h1 className="bg-blue-600 text-white text-lg font-bold py-2 px-4 rounded-lg cursor-pointer hover:bg-blue-700 transition duration-300">
+//                         Exercises
+//                     </h1>
+//                 </Link>
+//                 <Link href="/progress" passHref>
+//                     <h1 className="bg-purple-600 text-white text-lg font-bold py-2 px-4 rounded-lg ml-4 cursor-pointer hover:bg-purple-700 transition duration-300">
+//                         Progress
+//                     </h1>
+//                 </Link>
+//                 <button
+//                     onClick={handleSignIn}
+//                     className="bg-green-600 text-white text-lg font-bold py-2 px-4 rounded-lg ml-4 cursor-pointer hover:bg-green-700 transition duration-300"
+//                 >
+//                     {userData ? `Welcome ${userData.name}` : "Sign In"}
+//                 </button>
+//             </div>
+//         </header>
+//     );
+// }
