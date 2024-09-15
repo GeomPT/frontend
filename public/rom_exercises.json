@@ -25,10 +25,26 @@
     },
     {
         "id": 12,
-        "name": "elbow",
-        "processingType": "elbow",
+        "name": "elbow1",
+        "processingType": "elbow_horizontal",
         "title": "Rotator Cuff External Rotation",
-        "description": "Lie down, bend your arm at a 90 degree angle, and rotate your arm in an arch.",
+        "description": "Bend your arm horizontally, then slowly rotate your arm up in an arch.",
         "technologies": ["Easy"]
+    },
+    {
+      "id": 4,
+      "name": "elbow2",
+      "processingType": "elbow",
+      "title": "Elbow Extension",
+      "description": "Lie down, bend your arm at a 90 degree angle, and rotate your arm in an arch.",
+      "technologies": ["Easy"]
+    },
+    {
+      "id": 5,
+      "name": "placeholder",
+      "processingType": "knee",
+      "title": "Lying Hip Abduction",
+      "description": "Lie down, bend your arm at a 90 degree angle, and rotate your arm in an arch.",
+      "technologies": ["Easy"]
     }
 ]
