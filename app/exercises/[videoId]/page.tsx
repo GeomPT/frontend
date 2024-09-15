@@ -163,9 +163,12 @@ const VideoPage = ({ params }: { params: { videoId: string } }) => {
                 {/* Container for two cards in a row */}
                 <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-center justify-center">
                     {/* Video Card */}
-                    <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 flex flex-col">
-                        <div className="flex items-center justify-center mb-4 flex-grow">
-                            <video className="w-full h-30 rounded-md" controls>
+                    <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 h-96 flex flex-col">
+                        <div className="flex flex-col items-center justify-center mb-4 flex-grow">
+                            <h2 className="text-xl font-semibold mb-4 text-black text-center">
+                                Video Guide:
+                            </h2>
+                            <video className="w-full rounded-md" controls>
                                 <source
                                     className="rounded-md"
                                     src={video.videoLink}
@@ -177,7 +180,7 @@ const VideoPage = ({ params }: { params: { videoId: string } }) => {
                     </div>
 
                     {/* Steps Card */}
-                    <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 flex flex-col">
+                    <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 h-96 flex flex-col">
                         <h2 className="text-xl font-semibold mb-4 text-black text-center">
                             Steps:
                         </h2>
