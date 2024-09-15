@@ -41,7 +41,7 @@ export default function LandingPage() {
           </button>
         </Link>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex justify-center mb-16"> {/* Added mb-16 here */}
           <div className="relative w-[200px] h-[200px]">
             {" "}
             {/* Fixed size for image container */}
@@ -73,7 +73,7 @@ export default function LandingPage() {
 
       {/* Footer section for copyright */}
       <footer className="bg-gray-800 text-white text-center py-4 shadow-md">
-        <p className="text-sm"><span>&copy;</span> {new Date().getFullYear()} GeoPT. All rights reserved.</p>
+        <p className="text-sm"><span>&copy;</span> {new Date().getFullYear()} GeomPT. All rights reserved.</p>
       </footer>
     </div>
   );
