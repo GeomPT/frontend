@@ -34,6 +34,49 @@ const videoData = [
         description: "Guided rotation of shoulder joint.",
         technologies: ["Medium"],
     },
+    {
+        id: 5,
+        title: "Hip Abduction and Adduction",
+        description: "Raising leg outward and inward while lying down.",
+        technologies: ["Medium", "Requires mat or flat surface"],
+    },
+    {
+        id: 6,
+        title: "Hip Internal Rotation MMT",
+        description: "Rotating the hip inward while lying down.",
+        technologies: ["Medium", "Requires mat or bench"],
+    },
+    {
+        id: 7,
+        title: "Knee to Chest Stretch",
+        description: "Pulling knee toward chest.",
+        technologies: ["Easy", "No other items necessary"],
+    },
+    {
+        id: 8,
+        title: "Prone Hip Extension",
+        description: "Lifting leg upward while lying on your stomach.",
+        technologies: ["Medium", "Requires flat surface or mat"],
+    },
+    {
+        id: 9,
+        title: "Seated Spinal Rotation Stretch",
+        description: "Twisting the spine while seated to stretch the back.",
+        technologies: ["Easy", "No other items necessary"],
+    },
+    {
+        id: 10,
+        title: "Supine Active Hamstring Stretch",
+        description: "Stretching hamstrings while lying on your back.",
+        technologies: ["Easy", "No other items necessary"],
+    },
+    {
+        id: 11,
+        title: "TFL / IT Band Stretch (Standing)",
+        description:
+            "Stretching the iliotibial band by leaning against a wall.",
+        technologies: ["Easy", "Requires wall support"],
+    },
 ];
 
 export default function Component() {
@@ -57,7 +100,7 @@ export default function Component() {
                                     <div className="h-[100px] w-full flex items-center justify-center mb-4">
                                         <Image
                                             src={`/images/v${video.id}.jpg`}
-                                            alt={`Video ${video.id}`}
+                                            alt={`Video ${video.title}`}
                                             width={178}
                                             height={100}
                                             className="max-h-[100px] w-auto"
