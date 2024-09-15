@@ -8,9 +8,9 @@ export default function LivePage() {
       <h1 className="text-xl font-semibold mb-4">Video Stream:</h1>
       <LiveVideoFrame
         streaming={true}
-        width={512}
-        height={512}
-        processingType="edge"
+        width={1280}
+        height={720}
+        processingType="shoulder"
       />
     </>
   );
