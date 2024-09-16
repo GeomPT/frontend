@@ -2,7 +2,7 @@
 GeomPT is an AI-powered web platform for physical therapy providers to track and analyze patients' range of motion (ROM) over time. It helps address patient non-compliance and improves rehabilitation outcomes through data-driven insights and enhanced plan-of-care adherence.
 
 <div align="center">
-    <img src="https://github.com/user-attachments/assets/8c77259e-f6a1-46f7-88d7-4ea172e9f86e" alt="App Screenshot" width="800" height="533">
+    <img src="https://github.com/user-attachments/assets/8c77259e-f6a1-46f7-88d7-4ea172e9f86e" alt="App Screenshot" width="800" height="593">
 </div>
 
 **[GeomPT Demonstration](https://docs.google.com/presentation/d/1aX4HL_4ctRLDHhU742Kiq83iDzT51yhmOSt3CVUF0l0/edit#slide=id.g30066d03a52_19_1)**
