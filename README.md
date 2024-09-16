@@ -1,4 +1,4 @@
-# The Frontend for GeomPT
+# The Frontend for *GeomPT*
 GeomPT is an AI-powered web platform for physical therapy providers to track and analyze patients' range of motion (ROM) over time. It helps address patient non-compliance and improves rehabilitation outcomes through data-driven insights and enhanced plan-of-care adherence.
 
 ![GeomPT Screenshot](https://github.com/user-attachments/assets/8c77259e-f6a1-46f7-88d7-4ea172e9f86e)
@@ -12,7 +12,6 @@ GeomPT is an AI-powered web platform for physical therapy providers to track and
 
 ## Project Structure
 ```
-📦 
 ├─ app
 │  ├─ exercises # Page for exercises designed to improve ROM 
 │  ├─ progress # Assess/Progress page for tracking patient ROM over time 
@@ -37,7 +36,9 @@ GeomPT is an AI-powered web platform for physical therapy providers to track and
     npm run dev
     ```
 
-4. The frontend will be available at `http://localhost:3000`. As users interact with the platform, the backend processes the data automatically as long as its running simultaneously.
+The frontend will be available at `http://localhost:3000`. 
+
+As users interact with the platform, the backend processes the data automatically **as long as its running simultaneously.**
 
 ## Contribution
 1. Clone the repository locally:
