@@ -1,36 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Frontend for GeomPT
+An AI-powered web platform for physical therapy providers to track and analyze patients' range of motion (ROM) over time, addressing patient non-compliance and improving rehabilitation outcomes through data-driven insights and enhanced plan-of-care adherence.
+![GeomPT · 1 40pm · 09-16](https://github.com/user-attachments/assets/8c77259e-f6a1-46f7-88d7-4ea172e9f86e)
 
-## Getting Started
 
-First, run the development server:
+**[GeomPT Demonstration](https://docs.google.com/presentation/d/1aX4HL_4ctRLDHhU742Kiq83iDzT51yhmOSt3CVUF0l0/edit#slide=id.g30066d03a52_19_1)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Stack
+- Next.js
+- React
+- Tailwind + shadcn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Credit
+- Steven Zhang
+- Allen Liu
+- Sandro Gopal
+- Hector Astrom
