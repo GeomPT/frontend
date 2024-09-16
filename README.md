@@ -11,13 +11,15 @@ GeomPT is an AI-powered web platform for physical therapy providers to track and
 - Tailwind CSS + shadcn
 
 ## Project Structure
-├── app 
-│ ├── exercises # Page for exercises designed to improve ROM 
-│ ├── progress # Assess/Progress page for tracking patient ROM over time 
-│ ├── live # Live camera feed for testing real-time ROM measurement  
-├── components/ui # Shared UI components (e.g., live video frames, cards) 
-├── public # Static assets 
-└── globals.css # Global CSS styles
+```
+📦 
+├─ app
+│  ├─ exercises # Page for exercises designed to improve ROM 
+│  ├─ progress # Assess/Progress page for tracking patient ROM over time 
+│  └─ live # Live camera feed for testing real-time ROM measurement  
+├─ components/ui # Shared UI components (e.g., live video frames, cards) 
+└─ public # Static assets 
+```
 
 ## Usage
 1. Clone the repository:
