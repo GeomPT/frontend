@@ -161,7 +161,7 @@ const VideoPage = ({ params }: { params: { videoId: string } }) => {
                 </h1>
 
                 {/* Container for two cards in a row */}
-                <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-center justify-center">
+                <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-start justify-center">
                     {/* Video Card */}
                     <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 h-96 flex flex-col">
                         <div className="flex flex-col items-center justify-center mb-4 flex-grow">
@@ -179,10 +179,9 @@ const VideoPage = ({ params }: { params: { videoId: string } }) => {
                         </div>
                     </div>
 
-                    {/* Steps Card */}
-                    <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 h-96 flex flex-col">
+                    <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 flex flex-col">
                         <h2 className="text-xl font-semibold mb-4 text-black text-center">
-                            Steps:
+                            Instructions:
                         </h2>
                         <ol className="list-disc list-inside space-y-2 text-gray-700 flex-grow">
                             {video.steps.map((step, index) => (
