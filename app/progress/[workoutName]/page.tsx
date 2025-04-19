@@ -6,6 +6,7 @@ import "chart.js/auto";
 import Image from "next/image";
 import LiveVideoFrame from "@/components/ui/LiveVideoFrame";
 import exercisesData from "@/public/rom_exercises.json";
+import BackArrow from "@/components/ui/BackArrow";
 
 const WorkoutProgressPage = ({
     params,
@@ -142,7 +143,7 @@ const WorkoutProgressPage = ({
     }
   };
 
-  // --- Wrapper function to trigger fetch (remains the same) ---
+  // Wrapper function to trigger fetch
   const handleFetchGuidance = () => {
     if (dataPoints.length > 0) {
       fetchExerciseGuidance(); // Call the updated function
@@ -272,6 +273,9 @@ const WorkoutProgressPage = ({
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 to-purple-100 pb-8">
+      <div className="relative ml-24">
+        <BackArrow href="/progress" label="Assess" />
+      </div>
       {/* Workout Title */}
       <h1 className="text-4xl text-black font-bold text-center mt-8 mb-4">
         {title || workoutName}

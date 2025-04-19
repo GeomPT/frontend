@@ -1,3 +1,5 @@
+import BackArrow from "@/components/ui/BackArrow";
+
 const VideoPage = ({ params }: { params: { videoId: string } }) => {
     const { videoId } = params;
 
@@ -153,45 +155,47 @@ const VideoPage = ({ params }: { params: { videoId: string } }) => {
     }
 
     return (
-        <>
-            <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 py-10">
-                {/* Page Title */}
-                <h1 className="text-3xl font-bold text-black text-center mb-10">
-                    Details for {video.title}
-                </h1>
-
-                {/* Container for two cards in a row */}
-                <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-start justify-center">
-                    {/* Video Card */}
-                    <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 h-96 flex flex-col">
-                        <div className="flex flex-col items-center justify-center mb-4 flex-grow">
-                            <h2 className="text-xl font-semibold mb-4 text-black text-center">
-                                Video Guide:
-                            </h2>
-                            <video className="w-full rounded-md" controls>
-                                <source
-                                    className="rounded-md"
-                                    src={video.videoLink}
-                                    type="video/mp4"
-                                />
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-
-                    <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 flex flex-col">
-                        <h2 className="text-xl font-semibold mb-4 text-black text-center">
-                            Instructions:
-                        </h2>
-                        <ol className="list-disc list-inside space-y-2 text-gray-700 flex-grow">
-                            {video.steps.map((step, index) => (
-                                <li key={index}>{step}</li>
-                            ))}
-                        </ol>
-                    </div>
-                </div>
+      <>
+        <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 py-10">
+          <div className="relative ml-24">
+            <BackArrow href="/exercises" label="Exercises" />
+          </div>
+          {/* Page Title */}
+          <h1 className="text-3xl font-bold text-black text-center mb-10">
+            Details for {video.title}
+          </h1>
+          {/* Container for two cards in a row */}
+          <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-start justify-center">
+            {/* Video Card */}
+            <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 h-96 flex flex-col">
+              <div className="flex flex-col items-center justify-center mb-4 flex-grow">
+                <h2 className="text-xl font-semibold mb-4 text-black text-center">
+                  Video Guide:
+                </h2>
+                <video className="w-full rounded-md" controls>
+                  <source
+                    className="rounded-md"
+                    src={video.videoLink}
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </div>
-        </>
+
+            <div className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 relative duration-300 transform hover:scale-105 hover:shadow-xl w-full md:w-1/3 flex flex-col">
+              <h2 className="text-xl font-semibold mb-4 text-black text-center">
+                Instructions:
+              </h2>
+              <ol className="list-disc list-inside space-y-2 text-gray-700 flex-grow">
+                {video.steps.map((step, index) => (
+                  <li key={index}>{step}</li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </>
     );
 };
 
