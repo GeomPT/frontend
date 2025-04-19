@@ -77,6 +77,8 @@ const WorkoutProgressPage = ({
 
   // Fetch user-specific guidance from backend
   const fetchExerciseGuidance = async () => {
+    setAiMessage("Loading..."); // <-- Show loading immediately
+
     // Note: The backend max_output_tokens is set low (900)
     const systemMessage = `You are a highly knowledgeable assistant specialized in physical therapy, rehabilitation exercises, and injury prevention. Your task is to provide accurate, step-by-step instructions for performing various physical therapy stretches and strengthening exercises. In addition, you will also offer detailed guidance on the angles at which different joints should be positioned or moved during these exercises to optimize performance and prevent injury. Your responses should be clear, concise, and professional, targeting users recovering from injuries or improving flexibility and strength. Include information on recommended repetitions, sets, angles of exertion, and safety precautions whenever applicable. Ensure the explanations are easy to understand and follow a logical progression. The data is given in degrees. Limit your response to four lines. Do not use markdown formatting, only plaintext.`;
 
@@ -84,25 +86,19 @@ const WorkoutProgressPage = ({
     const userInstructionPrefix = `Based on the following data points for the ${workoutName} exercise, provide a brief analysis of the user's progress and suggestions for improvement:`;
     const bodyContent = JSON.stringify(dataPoints); // The data itself
 
-    // --- Clear previous message and prepare for streaming ---
-    setAiMessage("");
-
     try {
-      const response = await fetch(
-        "http://127.0.0.1:5000/api/ask-gemini",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            system: systemMessage,
-            user: userInstructionPrefix,
-            body: bodyContent,
-            // Backend handles temp, model, max_tokens etc.
-          }),
-        }
-      );
+      const response = await fetch("http://127.0.0.1:5000/api/ask-gemini", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          system: systemMessage,
+          user: userInstructionPrefix,
+          body: bodyContent,
+          // Backend handles temp, model, max_tokens etc.
+        }),
+      });
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -113,13 +109,14 @@ const WorkoutProgressPage = ({
         );
       }
 
-      // Handle streaming response 
+      // Handle streaming response
       if (!response.body) {
         throw new Error("Response body is missing.");
       }
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder(); // Defaults to utf-8
+      setAiMessage(""); // reset message
 
       // Loop to read stream chunks
       while (true) {
@@ -144,13 +141,14 @@ const WorkoutProgressPage = ({
   };
 
   // Wrapper function to trigger fetch
-  const handleFetchGuidance = () => {
+  const handleFetchGuidance = async () => {
     if (dataPoints.length > 0) {
-      fetchExerciseGuidance(); // Call the updated function
-    } else {
-      setAiMessage(
-        "Please gather some measurements before requesting guidance."
-      );
+      try {
+        await fetchExerciseGuidance();
+      } catch (error) {
+        console.error("Error fetching exercise guidance:", error);
+        setAiMessage("Sorry, there was an error getting your guidance.");
+      }
     }
   };
 
