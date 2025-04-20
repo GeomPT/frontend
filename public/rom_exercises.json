@@ -26,7 +26,7 @@
     {
         "id": 12,
         "name": "elbow-horizontal",
-        "processingType": "elbow_horizontal",
+        "processingType": "elbow-horizontal",
         "title": "Rotator Cuff External Rotation",
         "description": "Bend your arm horizontally, then slowly rotate your arm up in an arch.",
         "technologies": ["Easy"]

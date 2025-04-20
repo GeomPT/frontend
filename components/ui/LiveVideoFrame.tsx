@@ -155,7 +155,7 @@ export default function LiveVideoFrame({
               }
             },
             "image/jpeg",
-            1.0 // Set quality from 0 to 1
+            .8 // Set quality from 0 to 1
           );
         }
       }

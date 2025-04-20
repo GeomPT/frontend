@@ -17,20 +17,19 @@ export default function NavBar() {
   }, []);
 
   const fetchUserData = async (userId: string) => {
-    try {
-      const response = await fetch(
-        `http://127.0.0.1:5000/api/users/${userId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    const response = await fetch(`http://127.0.0.1:5000/api/users/${userId}`, {
+      method: "GET",
+    });
+    if (response.ok) {
       const data = await response.json();
       setUserData(data);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
+      // Store the user's name in localStorage
+      if (data.name) {
+        localStorage.setItem("name", data.name);
+      }
+    } else {
+      setUserData(null);
+      localStorage.removeItem("name");
     }
   };
 
@@ -47,6 +46,7 @@ export default function NavBar() {
 
   const handleSignOut = () => {
     localStorage.removeItem("userId");
+    localStorage.removeItem("name");
     setUserId("");
     setUserData(null);
   };

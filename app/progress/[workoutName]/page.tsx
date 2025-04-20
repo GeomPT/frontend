@@ -23,6 +23,7 @@ const WorkoutProgressPage = ({
   const scrollContainerRef = useRef(null);
   const clipRefs = useRef([]);
   const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState("");
   const [aiMessage, setAiMessage] = useState("");
 
   // Fetch exercise data
@@ -43,6 +44,10 @@ const WorkoutProgressPage = ({
     if (storedUserId) {
       setUserId(storedUserId);
     }
+    const storedUserName = localStorage.getItem("name");
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
   }, []);
 
   // Fetch data from the API
@@ -50,6 +55,7 @@ const WorkoutProgressPage = ({
     if (!userId) return;
     const fetchData = async () => {
       try {
+        console.log(workoutName)
         const response = await fetch(
           `http://127.0.0.1:5000/api/users/${userId}/${workoutName}`,
           {
@@ -62,6 +68,7 @@ const WorkoutProgressPage = ({
           throw new Error(`Error: ${response.statusText}`);
         }
         const data = await response.json();
+        console.log(data);
         // Sort data by timestamp ascending
         data.sort(
           (a, b) =>
@@ -79,11 +86,12 @@ const WorkoutProgressPage = ({
   const fetchExerciseGuidance = async () => {
     setAiMessage("Loading..."); // <-- Show loading immediately
 
-    // Note: The backend max_output_tokens is set low (900)
-    const systemMessage = `You are a highly knowledgeable assistant specialized in physical therapy, rehabilitation exercises, and injury prevention. Your task is to provide accurate, step-by-step instructions for performing various physical therapy stretches and strengthening exercises. In addition, you will also offer detailed guidance on the angles at which different joints should be positioned or moved during these exercises to optimize performance and prevent injury. Your responses should be clear, concise, and professional, targeting users recovering from injuries or improving flexibility and strength. Include information on recommended repetitions, sets, angles of exertion, and safety precautions whenever applicable. Ensure the explanations are easy to understand and follow a logical progression. The data is given in degrees. Limit your response to four lines. Do not use markdown formatting, only plaintext.`;
+    // Note: The backend max_output_tokens is set low
+    const systemMessage = `You are a highly knowledgeable AI specializing in physical therapy, rehabilitation exercises, and injury prevention. Your task is to provide accurate, step-by-step instructions for performing various physical therapy stretches and strengthening exercises. In addition, you will also offer detailed guidance on the angles at which different joints should be positioned or moved during these exercises to optimize performance and prevent injury. Your responses should be clear, concise, encouraging, and professional, targeting users recovering from injuries or improving flexibility and strength. Include information on recommended repetitions, sets, angles of exertion, and safety precautions whenever applicable. Ensure the explanations are easy to understand and follow a logical progression. The data is given in degrees. Limit your response to five lines. Do not use markdown formatting, only plaintext.`;
 
     // Split the original user message: prefix is instruction, body is data.
-    const userInstructionPrefix = `Based on the following data points for the ${workoutName} exercise, provide a brief analysis of the user's progress and suggestions for improvement:`;
+    const userInstructionPrefix = `Based on the following data points for the ${workoutName} exercise, provide a brief analysis of the user's progress and suggestions for improvement. Address the message to the user named ${userName}`;
+    console.log(JSON.stringify(dataPoints));
     const bodyContent = JSON.stringify(dataPoints); // The data itself
 
     try {

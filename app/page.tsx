@@ -13,6 +13,7 @@ const images = [
 
 export default function LandingPage() {
   const [activeImageIndex, setActiveImageIndex] = useState(0)
+  const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,11 +23,22 @@ export default function LandingPage() {
     return () => clearInterval(interval)
   }, [])
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const name = localStorage.getItem("name")
+      if (name && name.trim() !== "") {
+        setUserName(name)
+      }
+    }
+  }, [])
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-100 to-purple-100 relative overflow-hidden">
       <main className="container mx-auto px-4 py-16 text-center relative z-10 flex-grow mb-16">
         <h2 className="text-5xl md:text-5xl font-extrabold text-blue-900 mb-8 leading-tight">
-          Enhancing Your Physical Therapy with AI
+          {userName
+            ? `Welcome to GeomPT, ${userName}`
+            : "GeomPT: Enhancing Your Physical Therapy with AI"}
         </h2>
         <p className="text-xl md:text-2xl text-blue-800 mb-12 max-w-3xl mx-auto">
           Experience the future of rehabilitation with our AI-powered physical
@@ -38,7 +50,9 @@ export default function LandingPage() {
           </button>
         </Link>
 
-        <div className="mt-8 flex justify-center mb-24"> {/* Added mb-16 here */}
+        <div className="mt-8 flex justify-center mb-24">
+          {" "}
+          {/* Added mb-16 here */}
           <div className="relative w-64 h-64">
             {" "}
             {/* Fixed size for image container */}
@@ -70,7 +84,10 @@ export default function LandingPage() {
 
       {/* Footer section for copyright */}
       <footer className="bg-gray-800 text-white text-center py-4 shadow-md">
-        <p className="text-sm"><span>&copy;</span> {new Date().getFullYear()} GeomPT. All rights reserved.</p>
+        <p className="text-sm">
+          <span>&copy;</span> {new Date().getFullYear()} GeomPT. All rights
+          reserved.
+        </p>
       </footer>
     </div>
   );
